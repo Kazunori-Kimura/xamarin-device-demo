@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Plugin.Permissions;
 
 namespace DeviceDemo.Droid
 {
@@ -21,6 +22,17 @@ namespace DeviceDemo.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
+        }
+
+        /// <summary>
+        /// ユーザーが許可したかどうかを返す
+        /// </summary>
+        /// <param name="requestCode"></param>
+        /// <param name="permissions"></param>
+        /// <param name="grantResults"></param>
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
+        {
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 }

@@ -4,8 +4,90 @@
              xmlns:local="clr-namespace:DeviceDemo"
              x:Class="DeviceDemo.MainPage">
 
-	<Label Text="Welcome to Xamarin.Forms!" 
-           VerticalOptions="Center" 
-           HorizontalOptions="Center" />
+    <Grid RowSpacing="2" ColumnSpacing="1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition Height="80" />
+            <RowDefinition Height="80" />
+            <RowDefinition Height="80" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="100" />
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0"
+               Text="位置情報"
+               VerticalOptions="Center"
+               HorizontalOptions="FillAndExpand"
+               FontSize="Default"/>
+        <Label Grid.Row="0" Grid.Column="1"
+               x:Name="LatLng"
+               Text=""
+               VerticalOptions="Center"
+               HorizontalOptions="FillAndExpand"
+               FontSize="Default"/>
+        <Button Grid.Row="0" Grid.Column="2"
+                x:Name="CurrentLocation"
+                Text="現在地"
+                VerticalOptions="Center"
+                HorizontalOptions="FillAndExpand"
+                FontSize="Default"/>
+        
+        <Label Grid.Row="1" Grid.Column="0"
+               Text="加速度"
+               VerticalOptions="Center"
+               HorizontalOptions="FillAndExpand"
+               FontSize="Default"/>
+        <Label Grid.Row="1" Grid.Column="1"
+               x:Name="AccelerometerValue"
+               Text=""
+               VerticalOptions="Center"
+               HorizontalOptions="FillAndExpand"
+               FontSize="Default"/>
+        <Button Grid.Row="1" Grid.Column="2"
+                x:Name="ToggleAccelerometer"
+                Text="開始"
+                VerticalOptions="Center"
+                HorizontalOptions="FillAndExpand"
+                FontSize="Default"/>
+
+        <Label Grid.Row="2" Grid.Column="0"
+               Text="ジャイロ"
+               VerticalOptions="Center"
+               HorizontalOptions="FillAndExpand"
+               FontSize="Default"/>
+        <Label Grid.Row="2" Grid.Column="1"
+               x:Name="GyroscopeValue"
+               Text=""
+               VerticalOptions="Center"
+               HorizontalOptions="FillAndExpand"
+               FontSize="Default"/>
+        <Button Grid.Row="2" Grid.Column="2"
+                x:Name="ToggleGyroscope"
+                Text="開始"
+                VerticalOptions="Center"
+                HorizontalOptions="FillAndExpand"
+                FontSize="Default"/>
+
+        <Label Grid.Row="3" Grid.Column="0"
+               Text="コンパス"
+               VerticalOptions="Center"
+               HorizontalOptions="FillAndExpand"
+               FontSize="Default"/>
+        <Label Grid.Row="3" Grid.Column="1"
+               x:Name="CompassValue"
+               Text=""
+               VerticalOptions="Center"
+               HorizontalOptions="FillAndExpand"
+               FontSize="Default"/>
+        <Button Grid.Row="3" Grid.Column="2"
+                x:Name="ToggleCompass"
+                Text="開始"
+                VerticalOptions="Center"
+                HorizontalOptions="FillAndExpand"
+                FontSize="Default"/>
+    </Grid>
 
 </ContentPage>
