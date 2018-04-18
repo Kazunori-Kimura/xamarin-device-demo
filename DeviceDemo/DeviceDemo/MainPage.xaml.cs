@@ -5,16 +5,13 @@ using Plugin.Geolocator.Abstractions;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace DeviceDemo
 {
-	public partial class MainPage : ContentPage
+    public partial class MainPage : ContentPage
 	{
         IDeviceMotion motion = CrossDeviceMotion.Current;
 
@@ -96,6 +93,12 @@ namespace DeviceDemo
                 {
                     ToggleCompass.Text = capturingCompass ? "停止" : "開始";
                 });
+            };
+
+            // preview表示
+            PreviewCamera.Clicked += async (object s, EventArgs e) =>
+            {
+                await Navigation.PushAsync(new CameraPage());
             };
 
             // 確認

@@ -10,6 +10,7 @@
             <RowDefinition Height="80" />
             <RowDefinition Height="80" />
             <RowDefinition Height="80" />
+            <RowDefinition Height="80" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100" />
@@ -85,6 +86,13 @@
         <Button Grid.Row="3" Grid.Column="2"
                 x:Name="ToggleCompass"
                 Text="開始"
+                VerticalOptions="Center"
+                HorizontalOptions="FillAndExpand"
+                FontSize="Default"/>
+
+        <Button Grid.Row="4" Grid.Column="1"
+                x:Name="PreviewCamera"
+                Text="Camera Preview"
                 VerticalOptions="Center"
                 HorizontalOptions="FillAndExpand"
                 FontSize="Default"/>
