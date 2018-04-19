@@ -98,7 +98,8 @@ namespace DeviceDemo
             // preview表示
             PreviewCamera.Clicked += async (object s, EventArgs e) =>
             {
-                await Navigation.PushAsync(new CameraPage());
+                await CheckCameraPermissionStatusAsync();
+                await Navigation.PushModalAsync(new CameraPage());
             };
 
             // 確認
@@ -138,6 +139,19 @@ namespace DeviceDemo
             {
                 // リクエストを行う
                 status = (await CrossPermissions.Current.RequestPermissionsAsync(Permission.Location))[Permission.Location];
+            }
+        }
+
+        /// <summary>
+        /// カメラ権限確認
+        /// </summary>
+        /// <returns></returns>
+        private async Task CheckCameraPermissionStatusAsync()
+        {
+            var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
+            if (status != PermissionStatus.Granted)
+            {
+                status = (await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera))[Permission.Camera];
             }
         }
 
