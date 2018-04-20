@@ -99,7 +99,13 @@ namespace DeviceDemo
             PreviewCamera.Clicked += async (object s, EventArgs e) =>
             {
                 await CheckCameraPermissionStatusAsync();
-                await Navigation.PushModalAsync(new CameraPage());
+                await Navigation.PushAsync(new CameraPage());
+            };
+
+            // OpenGLView
+            PushOpenGLView.Clicked += async (s, e) =>
+            {
+                await Navigation.PushAsync(new OpenGLPage());
             };
 
             // 確認

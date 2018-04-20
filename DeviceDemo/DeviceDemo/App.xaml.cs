@@ -13,7 +13,8 @@ namespace DeviceDemo
 		{
 			InitializeComponent();
 
-			MainPage = new DeviceDemo.MainPage();
+            //MainPage = new DeviceDemo.MainPage();
+            MainPage = new NavigationPage(new DeviceDemo.MainPage());
 		}
 
 		protected override void OnStart ()
