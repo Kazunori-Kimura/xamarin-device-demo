@@ -25,7 +25,7 @@ namespace DeviceDemo.Droid
         public CameraCaptureSession Session { get; set; }
         public TextureView TextureView { get; set; }
         public SurfaceTexture SurfaceTexture { get; set; }
-        public CaptureRequest.Builder PreviewRequestBuilder { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public CaptureRequest.Builder PreviewRequestBuilder { get; set; }
 
         public Surface Surface
         {

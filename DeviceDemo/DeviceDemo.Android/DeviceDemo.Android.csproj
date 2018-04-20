@@ -74,6 +74,8 @@
     <Compile Include="CameraStateListener.cs" />
     <Compile Include="CaptureListener.cs" />
     <Compile Include="CompareSizesByArea.cs" />
+    <Compile Include="CustomCameraViewRenderer.cs" />
+    <Compile Include="ICameraPreview.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

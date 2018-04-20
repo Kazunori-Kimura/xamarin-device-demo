@@ -36,7 +36,7 @@ namespace DeviceDemo.Droid
             }
         }
 
-        protected CustomCameraViewRenderer(Context context) : base(context)
+        public CustomCameraViewRenderer(Context context) : base(context)
         {
         }
 

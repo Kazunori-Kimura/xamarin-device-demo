@@ -6,12 +6,13 @@
 
     <Grid RowSpacing="2" ColumnSpacing="1">
         <Grid.RowDefinitions>
-            <RowDefinition Height="80" />
-            <RowDefinition Height="80" />
-            <RowDefinition Height="80" />
-            <RowDefinition Height="80" />
-            <RowDefinition Height="80" />
-            <RowDefinition Height="80" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100" />
@@ -100,6 +101,12 @@
         <Button Grid.Row="5" Grid.Column="1"
                 x:Name="PushOpenGLView"
                 Text="OpenGLView Sample"
+                VerticalOptions="Center"
+                HorizontalOptions="FillAndExpand"
+                FontSize="Default"/>
+        <Button Grid.Row="6" Grid.Column="1"
+                x:Name="PushPileUpPage"
+                Text="pile up view sample"
                 VerticalOptions="Center"
                 HorizontalOptions="FillAndExpand"
                 FontSize="Default"/>

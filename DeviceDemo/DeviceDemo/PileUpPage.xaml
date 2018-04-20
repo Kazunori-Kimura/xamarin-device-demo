@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:DeviceDemo"
+             x:Class="DeviceDemo.PileUpPage">
+    <ContentPage.Content>
+        <AbsoluteLayout
+            x:Name="absoluteLayout">
+            <StackLayout
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                AbsoluteLayout.LayoutBounds="0,0,300,300">
+                <local:CustomCameraView
+                    HeightRequest="300"
+                    WidthRequest="300" />
+            </StackLayout>
+            <!--StackLayout
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                AbsoluteLayout.LayoutBounds="0,0,300,300">
+                <Label Text="hoge"/>
+            </StackLayout -->
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

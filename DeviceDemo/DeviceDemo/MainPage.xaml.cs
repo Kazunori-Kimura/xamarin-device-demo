@@ -108,6 +108,11 @@ namespace DeviceDemo
                 await Navigation.PushAsync(new OpenGLPage());
             };
 
+            PushPileUpPage.Clicked += async (s, a) =>
+            {
+                await Navigation.PushAsync(new PileUpPage());
+            };
+
             // 確認
             CheckLocationPermissionStatusAsync().Wait();
             CheckSensorPermissionStatusAsync().Wait();
