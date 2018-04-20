@@ -104,6 +104,7 @@ namespace DeviceDemo
 
             // 確認
             CheckLocationPermissionStatusAsync().Wait();
+            CheckSensorPermissionStatusAsync().Wait();
 		}
 
         /// <summary>
@@ -143,6 +144,19 @@ namespace DeviceDemo
         }
 
         /// <summary>
+        /// センサーの取得権限確認
+        /// </summary>
+        /// <returns></returns>
+        private async Task CheckSensorPermissionStatusAsync()
+        {
+            var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Sensors);
+            if (status != PermissionStatus.Granted)
+            {
+                status = (await CrossPermissions.Current.RequestPermissionsAsync(Permission.Sensors))[Permission.Sensors];
+            }
+        }
+
+        /// <summary>
         /// カメラ権限確認
         /// </summary>
         /// <returns></returns>
@@ -166,6 +180,11 @@ namespace DeviceDemo
                 motion.SensorValueChanged += (object s, SensorValueChangedEventArgs e) =>
                 {
                     if (!capturingAccelerometer)
+                    {
+                        return;
+                    }
+
+                    if (!e.SensorType.Equals(MotionSensorType.Accelerometer))
                     {
                         return;
                     }
@@ -204,6 +223,11 @@ namespace DeviceDemo
                         return;
                     }
 
+                    if (!e.SensorType.Equals(MotionSensorType.Gyroscope))
+                    {
+                        return;
+                    }
+
                     var value = (MotionVector)e.Value;
                     Debug.WriteLine($"gyroscope => X:{value.X} Y:{value.Y} Z:{value.Z}");
                     // Formに描画する
@@ -234,6 +258,11 @@ namespace DeviceDemo
                 motion.SensorValueChanged += (object s, SensorValueChangedEventArgs e) =>
                 {
                     if (!capturingCompass)
+                    {
+                        return;
+                    }
+
+                    if (!e.SensorType.Equals(MotionSensorType.Compass))
                     {
                         return;
                     }
