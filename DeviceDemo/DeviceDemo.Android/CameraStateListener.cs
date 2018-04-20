@@ -11,9 +11,9 @@ namespace DeviceDemo.Droid
     /// </summary>
     class CameraStateListener : CameraDevice.StateCallback
     {
-        private CameraPageRenderer owner;
+        private ICameraPreview owner;
 
-        public CameraStateListener(CameraPageRenderer owner)
+        public CameraStateListener(ICameraPreview owner)
         {
             this.owner = owner;
         }
@@ -32,7 +32,7 @@ namespace DeviceDemo.Droid
         {
             System.Diagnostics.Debug.WriteLine("CameraStateListener.OnOpened");
 
-            owner.camera = camera;
+            owner.Camera = camera;
             var surface = owner.Surface;
 
             List<Surface> list = new List<Surface>
@@ -40,8 +40,8 @@ namespace DeviceDemo.Droid
                 surface
             };
 
-            owner.previewRequestBuilder = camera.CreateCaptureRequest(CameraTemplate.Preview);
-            owner.previewRequestBuilder.AddTarget(surface);
+            owner.PreviewRequestBuilder = camera.CreateCaptureRequest(CameraTemplate.Preview);
+            owner.PreviewRequestBuilder.AddTarget(surface);
 
             camera.CreateCaptureSession(list, new CameraSessionListener(this.owner), null);
         }

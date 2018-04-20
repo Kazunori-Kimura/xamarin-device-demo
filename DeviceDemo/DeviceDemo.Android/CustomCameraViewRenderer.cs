@@ -13,68 +13,53 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-[assembly: ExportRenderer(typeof(CameraPage), typeof(CameraPageRenderer))]
+[assembly: ExportRenderer(typeof(CustomCameraView), typeof(CustomCameraViewRenderer))]
 namespace DeviceDemo.Droid
 {
-    public class CameraPageRenderer : PageRenderer, TextureView.ISurfaceTextureListener, ICameraPreview
+    class CustomCameraViewRenderer : ViewRenderer<CustomCameraView, Android.Views.View>, TextureView.ISurfaceTextureListener, ICameraPreview
     {
-        Android.Views.View view;
         Activity activity;
+        Android.Views.View view;
 
         public CameraDevice Camera { get; set; }
         public CameraCaptureSession Session { get; set; }
         public TextureView TextureView { get; set; }
         public SurfaceTexture SurfaceTexture { get; set; }
-        public CaptureRequest.Builder PreviewRequestBuilder { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public Android.Util.Size PreviewSize { get; set; }
+        public CaptureRequest.Builder PreviewRequestBuilder { get; set; }
 
         public Surface Surface
         {
-            get {
+            get
+            {
                 return new Surface(SurfaceTexture);
             }
         }
 
-        public Android.Util.Size PreviewSize { get; set; }
-
-        public CameraPageRenderer(Context context) : base(context)
+        protected CustomCameraViewRenderer(Context context) : base(context)
         {
         }
 
-        protected override void OnElementChanged(ElementChangedEventArgs<Page> e)
+        protected override void OnElementChanged(ElementChangedEventArgs<CustomCameraView> e)
         {
             base.OnElementChanged(e);
 
-            if (e.OldElement != null || Element == null)
-            {
-                return;
-            }
-
-            // UI構築
-            try
+            if (Control == null)
             {
                 SetupUserInterface();
                 AddView(view);
             }
-            catch (System.Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-                System.Diagnostics.Debug.WriteLine(ex.StackTrace);
-            }
         }
 
-        /// <summary>
-        /// UI構築
-        /// </summary>
         private void SetupUserInterface()
         {
-            System.Diagnostics.Debug.WriteLine("CameraPageRenderer.SetupUserInterface");
-
-            activity = (Activity)this.Context;
+            activity = (Activity)Context;
             view = activity.LayoutInflater.Inflate(Resource.Layout.CameraLayout, this, false);
 
             TextureView = view.FindViewById<TextureView>(Resource.Id.textureView);
             TextureView.SurfaceTextureListener = this;
         }
+
 
         /// <summary>
         /// 背面カメラを開く
@@ -177,25 +162,14 @@ namespace DeviceDemo.Droid
             view.Layout(0, 0, r - l, b - t);
         }
 
-        /// <summary>
-        /// こっから開始
-        /// </summary>
-        /// <param name="surface"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
         public void OnSurfaceTextureAvailable(SurfaceTexture surface, int width, int height)
         {
-            System.Diagnostics.Debug.WriteLine("CameraPageRenderer.OnSurfaceTextureAvailable");
+            System.Diagnostics.Debug.WriteLine("OnSurfaceTextureAvailable.");
             SurfaceTexture = surface;
-            
+
             this.OpenBackCamera();
         }
 
-        /// <summary>
-        /// 終わり
-        /// </summary>
-        /// <param name="surface"></param>
-        /// <returns></returns>
         public bool OnSurfaceTextureDestroyed(SurfaceTexture surface)
         {
             System.Diagnostics.Debug.WriteLine("OnSurfaceTextureDestroyed.");
@@ -224,14 +198,10 @@ namespace DeviceDemo.Droid
 
         public void OnSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height)
         {
-            System.Diagnostics.Debug.WriteLine("CameraPageRenderer.OnSurfaceTextureSizeChanged");
-            // なんかする必要ある？
         }
 
         public void OnSurfaceTextureUpdated(SurfaceTexture surface)
         {
-            //System.Diagnostics.Debug.WriteLine("CameraPageRenderer.OnSurfaceTextureUpdated");
-            // 何もしない
         }
     }
 }

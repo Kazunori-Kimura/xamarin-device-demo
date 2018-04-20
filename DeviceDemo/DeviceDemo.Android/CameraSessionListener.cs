@@ -5,9 +5,9 @@ namespace DeviceDemo.Droid
 {
     class CameraSessionListener : CameraCaptureSession.StateCallback
     {
-        private CameraPageRenderer owner;
+        private ICameraPreview owner;
 
-        public CameraSessionListener(CameraPageRenderer owner)
+        public CameraSessionListener(ICameraPreview owner)
         {
             this.owner = owner;
         }
@@ -16,11 +16,11 @@ namespace DeviceDemo.Droid
         {
             System.Diagnostics.Debug.WriteLine("CameraSessionListener.OnConfigured");
 
-            this.owner.session = session;
+            this.owner.Session = session;
             // オートフォーカス
-            this.owner.previewRequestBuilder.Set(CaptureRequest.ControlAfTrigger, (int)ControlAFTrigger.Start);
+            this.owner.PreviewRequestBuilder.Set(CaptureRequest.ControlAfTrigger, (int)ControlAFTrigger.Start);
             // プレビューの開始
-            session.SetRepeatingRequest(this.owner.previewRequestBuilder.Build(), new CaptureListener(), null);
+            session.SetRepeatingRequest(this.owner.PreviewRequestBuilder.Build(), new CaptureListener(), null);
         }
 
         public override void OnConfigureFailed(CameraCaptureSession session)
